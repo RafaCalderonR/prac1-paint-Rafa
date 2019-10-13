@@ -17,14 +17,47 @@ export class CanvasView{
         this.canvas= this.view.getElementById('mycanvas') as HTMLCanvasElement;
         this.context = this.canvas.getContext('2d');
 
+
+       this.draw();
+       this.formValue();
     }
+
+     draw() {
+        this.canvas.addEventListener('click', (event)=> {
+            const coordinates = this.getLocalClickCoords(event, this.canvas)
+            const parameters={
+                axisX: coordinates.x,
+                axisY: coordinates.y,
+                height: 100,
+                width: 100
+            }
+            this.drawSquare(parameters)
+
+        });
+    }
+
+    formValue(){
+        this.shapesForm.addEventListener('click', 
+        e => console.log((e.target as HTMLInputElement).value))
+    }
+
+     getLocalClickCoords = (event, parent) =>{
+        return {
+            
+            x: event.clientX - parent.offsetLeft,
+            y: event.clientY - parent.offsetLeft,
+        }
+    }
+    
 
     
 
-    DrawSquare = (parameters: ISquare) => {
-        const { axisX, axisY, height, width } = parameters
+    drawSquare = (parameters: ISquare) => {
 
-        this.context.beginPath();
+       
+        const { axisX, axisY, height, width } = parameters
+        
+        
         this.context.fillRect(axisX, axisY, height, width)
 
     }

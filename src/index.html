@@ -33,10 +33,6 @@
     border-style: solid;
     border-color: black;
     
-     width: 100%;
-  }
-  h3{
-    padding-top: 0.4em;
   }
   
   
@@ -48,26 +44,26 @@
 
   
     <div class="grid-container">
-        <div class="Canvas"><canvas class="mycanvas" id="mycanvas" ></canvas></div>
+        <div class="Canvas"><canvas width='1000' height='700' class="mycanvas" id="mycanvas" ></canvas></div>
         <div class="header"></div>
         <div class="footer"></div>
-        <div class="menu1">
+        <div class="menu1" id="menu1">
             <h3>Shapes</h3>
-            <button type="radio" class="btn btn-outline-info btn-lg btn-block">Cricle</button>
-            <button type="radio" class="btn btn-outline-info btn-lg btn-block">Triangle</button>
-            <button type="radio" class="btn btn-outline-info btn-lg btn-block">Square</button>
-            <button type="radio" class="btn btn-outline-info btn-lg btn-block">Hearth</button>
+            <button type="radio" class="btn btn-outline-info btn-lg btn-block" value="Circle">Circle</button>
+            <button type="radio" class="btn btn-outline-info btn-lg btn-block" value="Triangle">Triangle</button>
+            <button type="radio" class="btn btn-outline-info btn-lg btn-block" value="Square">Square</button>
+            <button type="radio" class="btn btn-outline-info btn-lg btn-block" value="">Hearth</button>
             <h3>Colour</h3>
             <input type="color" class="btn btn-outline-info btn-lg btn-block" placeholder="Enter email">
             <h3>Size</h3>
               
-                  
-                </div>
+            <button class="btn btn-outline-info btn-lg btn-block" >Pintar</button> 
+        </div>
                
               
-             
+        <div class="menu2"></div>  
         </div>
-        <div class="menu2"></div>
+        
       </div>
 
 </div>
