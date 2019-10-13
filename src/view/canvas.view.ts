@@ -3,11 +3,11 @@ import ISquare from "../models/shapes/square";
 
 export class CanvasView{
 
-    private shapesForm: HTMLElement;
+    private shapesForm: HTMLInputElement;
     private canvas: HTMLCanvasElement;
     private context: CanvasRenderingContext2D;
-    private shape: HTMLElement;
-    private color: HTMLElement;
+    private shape: HTMLInputElement;
+    private color: HTMLInputElement;
 
 
     constructor(private view: Document){
@@ -22,21 +22,19 @@ export class CanvasView{
         this.getCanvas();
         this.getColorInput();
         
-        console.log(this.canvas)
+        
     }
 
     init():void{
 
         this.draw();
-       this.formValue();
-        
+       
           
     }
 
- 
-
+    
     private getShapeInput=()=>{
-        this.shapesForm = this.view.getElementById('menu1');
+        this.shape = this.view.getElementById('menu1') as HTMLInputElement;
     } 
 
     private getCanvas=()=>{
@@ -51,7 +49,7 @@ export class CanvasView{
 
     private getColorInput=()=>{
 
-        this.color = this.view.getElementById('input-color');
+        this.color = this.view.getElementById('input-color') as HTMLInputElement;
     }
 
     /*private getColorValue=()=>{
@@ -77,10 +75,7 @@ export class CanvasView{
         this.shape, this.color
     }
 
-    formValue(){
-        this.shapesForm.addEventListener('click', 
-        e => console.log((e.target as HTMLInputElement).value))
-    }
+    
 
      getLocalClickCoords = (event, parent) =>{
         return {
