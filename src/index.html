@@ -9,6 +9,40 @@
     
     <title>Document</title>
 </head>
+<style>
+    .grid-container {
+    display: grid;
+    grid-template-columns: 0.4fr 1.7fr 1.7fr 0.4fr;
+    grid-template-rows: 0.3fr 1.7fr 1.7fr 0.3fr;
+    grid-template-areas: "header header header header" "menu1 Canvas Canvas menu2" "menu1 Canvas Canvas menu2" "footer footer footer footer";
+  }
+  
+  .Canvas { grid-area: Canvas; }
+  
+  .header { grid-area: header; }
+  
+  .footer { grid-area: footer; }
+  
+  .menu1 { grid-area: menu1; 
+            padding: 3px;
+  }
+  
+  .menu2 { grid-area: menu2; }
+  
+  .mycanvas{
+    border-style: solid;
+    border-color: black;
+    
+     width: 100%;
+  }
+  h3{
+    padding-top: 0.4em;
+  }
+  
+  
+  
+  
+</style>
 
 <body>  
 
