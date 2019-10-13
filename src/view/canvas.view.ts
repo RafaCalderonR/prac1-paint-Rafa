@@ -6,23 +6,60 @@ export class CanvasView{
     private shapesForm: HTMLElement;
     private canvas: HTMLCanvasElement;
     private context: CanvasRenderingContext2D;
+    private shape: HTMLElement;
+    private color: HTMLElement;
+
 
     constructor(private view: Document){
+
+        this.initCaching();
         this.init();
+
+    }
+
+    private initCaching(){
+        this.getShapeInput();
+        this.getCanvas();
+        this.getColorInput();
+        
+        console.log(this.canvas)
     }
 
     init():void{
 
-        this.shapesForm = this.view.getElementById('menu1');
-        this.canvas= this.view.getElementById('mycanvas') as HTMLCanvasElement;
-        this.context = this.canvas.getContext('2d');
-
-
-       this.draw();
+        this.draw();
        this.formValue();
+        
+          
     }
 
+ 
+
+    private getShapeInput=()=>{
+        this.shapesForm = this.view.getElementById('menu1');
+    } 
+
+    private getCanvas=()=>{
+        this.canvas = this.view.getElementById('mycanvas') as HTMLCanvasElement;
+    }
+
+
+    private getContext=()=>{
+        
+        this.context = this.canvas.getContext('2d');
+    }
+
+    private getColorInput=()=>{
+
+        this.color = this.view.getElementById('input-color');
+    }
+
+    /*private getColorValue=()=>{
+        this.inputName = this.view.getElementById("name") as HTMLInputElement;
+    }*/
+
      draw() {
+
         this.canvas.addEventListener('click', (event)=> {
             const coordinates = this.getLocalClickCoords(event, this.canvas)
             const parameters={
@@ -34,6 +71,10 @@ export class CanvasView{
             this.drawSquare(parameters)
 
         });
+    }
+
+    getValue(){
+        this.shape, this.color
     }
 
     formValue(){
