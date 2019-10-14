@@ -46,7 +46,7 @@ export class CanvasView{
             axisX:  0,
             axisY:  0,
             size: 100,
-            color: "#FF0000",
+            color: "#cb3234",
            
     }
 
@@ -123,8 +123,9 @@ export class CanvasView{
     drawSquare = () => {
 
         const { shape, axisX, axisY, size, color} = this.parameters
-        
-        this.context.strokeStyle = color
+        console.log(this.parameters)
+
+        this.context.fillStyle = color
         this.context.fillRect(axisX, axisY, size, size);
 
     }
@@ -132,7 +133,6 @@ export class CanvasView{
     drawCircle = (parameters) => {
 
         const {  axisX, axisY, size } = parameters
-
 
         this.context.beginPath();
         this.context.arc(axisX, axisY, size, 0, 2 * Math.PI);
