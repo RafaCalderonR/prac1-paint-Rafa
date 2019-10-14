@@ -1,5 +1,4 @@
-import ICircle from "../models/shapes/circle";
-import ISquare from "../models/shapes/square";
+
 import IParameter from "../models/parameters";
 
 export class CanvasView{
@@ -10,6 +9,7 @@ export class CanvasView{
     private shapes: HTMLInputElement;
     private color: HTMLInputElement;
     private parameters: IParameter;
+    private size: HTMLInputElement;
 
 
     constructor(private view: Document){
@@ -25,6 +25,7 @@ export class CanvasView{
         this.getCanvas();
         this.getColorInput();
         this.getContext(); 
+        this.getSizeValue();
 
        
     }
@@ -42,8 +43,7 @@ export class CanvasView{
             shape: "",
             axisX:  0,
             axisY:  0,
-            height: 100,
-            width: 100
+            size: 100
            
     }
     this.getShapeValue();
@@ -68,6 +68,11 @@ export class CanvasView{
         this.color = this.view.getElementById('input-color') as HTMLInputElement;
     }
 
+    private getSizeInput=()=>{
+        
+        this.size = this.view.getElementById('input-size') as HTMLInputElement;
+    }
+
 
     private getShapeInput=()=>{
 
@@ -84,6 +89,12 @@ export class CanvasView{
     private getColorValue=()=>{
 
         this.color.addEventListener('click', (e)=> this.parameters['color']=((e.target as HTMLInputElement).value) );
+
+    }
+
+    private getSizeValue=()=>{
+
+        this.size.addEventListener('click', (e)=> this.parameters['size']=Number(((e.target as HTMLInputElement).value) ));
 
     }
 
@@ -116,15 +127,15 @@ export class CanvasView{
 
     drawSquare = () => {
 
-        console.log(this.parameters)
+    
 
-        const { shape, axisX, axisY, height, width } = this.parameters
-        this.context.fillStyle()
-        this.context.fillRect(axisX, axisY, height, width);
+        const { shape, axisX, axisY, size} = this.parameters
+        
+        this.context.fillRect(axisX, axisY, size, size);
 
     }
 
-    drawCircle = (parameters: ICircle) => {
+    drawCircle = (parameters: IParameter) => {
 
         const {  axisX, axisY, size } = parameters
 
