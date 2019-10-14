@@ -6,11 +6,10 @@ export class CanvasView{
     
     private canvas: HTMLCanvasElement;
     private context: CanvasRenderingContext2D;
-    private shapes: HTMLInputElement;
-    private color: HTMLInputElement;
+    private shapesRadio: HTMLInputElement;
+    private colorInput: HTMLInputElement;
     private parameters: IParameter;
     private size: HTMLInputElement;
-
 
     constructor(private view: Document){
 
@@ -25,28 +24,32 @@ export class CanvasView{
         this.getCanvas();
         this.getColorInput();
         this.getContext(); 
-        this.getSizeValue();
+        this.getSizeInput();
 
        
     }
 
-    init():void{
+    private init():void{
 
         this.draw();
         this.getColorValue();
-        
+        this.getSizeValue();
+        this.getShapeValue();
+
     }
 
-    initParameters(){
+    private initParameters(){
 
         this.parameters = {
+
             shape: "",
             axisX:  0,
             axisY:  0,
-            size: 100
+            size: 100,
+            color: "#FF0000",
            
     }
-    this.getShapeValue();
+
      console.log(this.parameters)
     }
 
@@ -65,7 +68,7 @@ export class CanvasView{
 
     private getColorInput=()=>{
         
-        this.color = this.view.getElementById('input-color') as HTMLInputElement;
+        this.colorInput = this.view.getElementById('input-color') as HTMLInputElement;
     }
 
     private getSizeInput=()=>{
@@ -76,19 +79,19 @@ export class CanvasView{
 
     private getShapeInput=()=>{
 
-        this.shapes = this.view.getElementById('radio-group') as HTMLInputElement;
+        this.shapesRadio = this.view.getElementById('radio-group') as HTMLInputElement;
     } 
 
     private getShapeValue=()=>{
 
-        this.shapes.addEventListener('click', (e)=> this.parameters['shape'] = ((e.target as HTMLInputElement).value) )
+        this.shapesRadio.addEventListener('click', (e)=> this.parameters['shape'] = ((e.target as HTMLInputElement).value) )
         
         
     }
 
     private getColorValue=()=>{
 
-        this.color.addEventListener('click', (e)=> this.parameters['color']=((e.target as HTMLInputElement).value) );
+        this.colorInput.addEventListener('click', (e)=> this.parameters['color']=((e.target as HTMLInputElement).value) );
 
     }
 
@@ -98,44 +101,35 @@ export class CanvasView{
 
     }
 
-    
-
-   
-
-    private  draw() {
+    private draw() {
 
         this.canvas.addEventListener('click', (event)=> {
 
              this.getLocalClickCoords(event, this.canvas)
              this.drawSquare();
-            
+
         });
     }
 
  
-
-     getLocalClickCoords = (event, parent) =>{
+    private getLocalClickCoords = (event, parent) =>{
        
-            
             this.parameters['axisX'] = event.clientX - parent.offsetLeft,
             this.parameters['axisY'] = event.clientY - parent.offsetLeft
         
     }
     
 
-    
-
     drawSquare = () => {
 
-    
-
-        const { shape, axisX, axisY, size} = this.parameters
+        const { shape, axisX, axisY, size, color} = this.parameters
         
+        this.context.strokeStyle = color
         this.context.fillRect(axisX, axisY, size, size);
 
     }
 
-    drawCircle = (parameters: IParameter) => {
+    drawCircle = (parameters) => {
 
         const {  axisX, axisY, size } = parameters
 

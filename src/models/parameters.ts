@@ -1,6 +1,7 @@
 export default interface IParameter{
-    shape: string
+    shape: string,
     axisX: number,
     axisY: number,
-    size: number
+    size: number,
+    color:string
 }
