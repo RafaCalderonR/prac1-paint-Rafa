@@ -14,30 +14,64 @@ export class CanvasView{
 
         this.initCaching();
         this.init();
+        this.initParameters();
 
     }
 
     private initCaching(){
+
         this.getShapeInput();
         this.getCanvas();
         this.getColorInput();
         
-        
+       
     }
 
     init():void{
 
         this.draw();
-       
-          
+        this.getColorValue()
     }
+
+    initParameters(){
+
+        const parameters = {
+            axisX:  0,
+            axisY:  0,
+            height: 0,
+           
+    }
+        const figure = {
+          
+            figure: "",
+    }
+    }
+
+
+
+
+
+
+    
 
     
     private getShapeInput=()=>{
-        this.shape = this.view.getElementById('menu1') as HTMLInputElement;
+
+        this.shape = this.view.getElementById('radio-group') as HTMLInputElement;
+       
     } 
 
+    private getShapeValue=()=>{
+
+        this.shape.addEventListener('click', (e)=> console.log((e.target as HTMLInputElement).value) );
+    }
+
+    /*private getColorValue=()=>{
+        this.color.addEventListener('click', (e)=> console.log((e.target as HTMLInputElement).value) );
+    }*/
+
     private getCanvas=()=>{
+
         this.canvas = this.view.getElementById('mycanvas') as HTMLCanvasElement;
     }
 
@@ -48,13 +82,13 @@ export class CanvasView{
     }
 
     private getColorInput=()=>{
-
+        
         this.color = this.view.getElementById('input-color') as HTMLInputElement;
     }
 
-    /*private getColorValue=()=>{
-        this.inputName = this.view.getElementById("name") as HTMLInputElement;
-    }*/
+    private getColorValue=()=>{
+        console.log(this.color.value)
+    }
 
      draw() {
 
