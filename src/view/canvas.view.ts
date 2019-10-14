@@ -1,13 +1,15 @@
 import ICircle from "../models/shapes/circle";
 import ISquare from "../models/shapes/square";
+import IParameter from "../models/parameters";
 
 export class CanvasView{
 
-    private shapesForm: HTMLInputElement;
+    
     private canvas: HTMLCanvasElement;
     private context: CanvasRenderingContext2D;
-    private shape: HTMLInputElement;
+    private shapes: HTMLInputElement;
     private color: HTMLInputElement;
+    private parameters: IParameter;
 
 
     constructor(private view: Document){
@@ -15,7 +17,6 @@ export class CanvasView{
         this.initCaching();
         this.init();
         this.initParameters();
-
     }
 
     private initCaching(){
@@ -23,52 +24,33 @@ export class CanvasView{
         this.getShapeInput();
         this.getCanvas();
         this.getColorInput();
-        
+        this.getContext(); 
+
        
     }
 
     init():void{
 
         this.draw();
-        this.getColorValue()
+        this.getColorValue();
+        
     }
 
     initParameters(){
 
-        const parameters = {
+        this.parameters = {
+            shape: "",
             axisX:  0,
             axisY:  0,
-            height: 0,
+            height: 100,
+            width: 100
            
     }
-        const figure = {
-          
-            figure: "",
+    this.getShapeValue();
+     console.log(this.parameters)
     }
-    }
-
-
-
-
-
 
     
-
-    
-    private getShapeInput=()=>{
-
-        this.shape = this.view.getElementById('radio-group') as HTMLInputElement;
-       
-    } 
-
-    private getShapeValue=()=>{
-
-        this.shape.addEventListener('click', (e)=> console.log((e.target as HTMLInputElement).value) );
-    }
-
-    /*private getColorValue=()=>{
-        this.color.addEventListener('click', (e)=> console.log((e.target as HTMLInputElement).value) );
-    }*/
 
     private getCanvas=()=>{
 
@@ -86,49 +68,59 @@ export class CanvasView{
         this.color = this.view.getElementById('input-color') as HTMLInputElement;
     }
 
-    private getColorValue=()=>{
-        console.log(this.color.value)
+
+    private getShapeInput=()=>{
+
+        this.shapes = this.view.getElementById('radio-group') as HTMLInputElement;
+    } 
+
+    private getShapeValue=()=>{
+
+        this.shapes.addEventListener('click', (e)=> this.parameters['shape'] = ((e.target as HTMLInputElement).value) )
+        
+        
     }
 
-     draw() {
+    private getColorValue=()=>{
+
+        this.color.addEventListener('click', (e)=> this.parameters['color']=((e.target as HTMLInputElement).value) );
+
+    }
+
+    
+
+   
+
+    private  draw() {
 
         this.canvas.addEventListener('click', (event)=> {
-            const coordinates = this.getLocalClickCoords(event, this.canvas)
-            const parameters={
-                axisX: coordinates.x,
-                axisY: coordinates.y,
-                height: 100,
-                width: 100
-            }
-            this.drawSquare(parameters)
 
+             this.getLocalClickCoords(event, this.canvas)
+             this.drawSquare();
+            
         });
     }
 
-    getValue(){
-        this.shape, this.color
-    }
-
-    
+ 
 
      getLocalClickCoords = (event, parent) =>{
-        return {
+       
             
-            x: event.clientX - parent.offsetLeft,
-            y: event.clientY - parent.offsetLeft,
-        }
+            this.parameters['axisX'] = event.clientX - parent.offsetLeft,
+            this.parameters['axisY'] = event.clientY - parent.offsetLeft
+        
     }
     
 
     
 
-    drawSquare = (parameters: ISquare) => {
+    drawSquare = () => {
 
-       
-        const { axisX, axisY, height, width } = parameters
-        
-        
-        this.context.fillRect(axisX, axisY, height, width)
+        console.log(this.parameters)
+
+        const { shape, axisX, axisY, height, width } = this.parameters
+        this.context.fillStyle()
+        this.context.fillRect(axisX, axisY, height, width);
 
     }
 
