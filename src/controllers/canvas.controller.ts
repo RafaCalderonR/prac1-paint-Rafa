@@ -44,15 +44,17 @@ export class ShapeController{
     }
 
 
-
-
-
-
-    private getLocalClickCoords = (event, parent) =>{
-       
-        //this.axisX = event.clientX - parent.offsetLeft,
-        //this.asisY = event.clientY - parent.offsetLeft
+    public calculateCoordinates = (event, parent) =>{
+        
+        this._axisX = event.clientX - parent.offsetLeft,
+        this._axisY = event.clientY - parent.offsetLeft
     }
+
+
+
+
+
+
 
 
 }

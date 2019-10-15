@@ -90,23 +90,13 @@ export class CanvasView{
 
     }
 
-    private draw() {
+    private getcoordinates=() =>
 
-        this.canvas.addEventListener('click', (event)=> {
-
-             this.getLocalClickCoords(event, this.canvas)
-             this.drawSquare();
-
-        });
-    }
+        this.canvas.addEventListener('click', (event)=>  this.getLocalClickCoords(event, this.canvas)
+             
+    
 
  
-    private getLocalClickCoords = (event, parent) =>{
-       
-            this.parameters['axisX'] = event.clientX - parent.offsetLeft,
-            this.parameters['axisY'] = event.clientY - parent.offsetLeft
-        
-    }
     
 
     drawSquare = () => {
