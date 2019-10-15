@@ -1,4 +1,4 @@
-import { ShapeModel } from "../models/shape.model";
+import { ShapeController } from "../controllers/shape.model";
 
 export class CanvasView {
   private canvas: HTMLCanvasElement;
@@ -7,7 +7,7 @@ export class CanvasView {
   private colorInput: HTMLInputElement;
   private size: HTMLInputElement;
 
-  constructor(private view: Document, private shape: ShapeModel) {
+  constructor(private view: Document, private shape: ShapeController) {
     this.initCaching();
     this.init();
   }
