@@ -28,7 +28,7 @@ export class CanvasView{
 
     }
 
-    
+
     private init():void{
 
         this.draw();
@@ -73,20 +73,20 @@ export class CanvasView{
 
     private getShapeValue=()=>
 
-        this.shapesRadio.addEventListener('click', (e)=> this.parameters['shape'] = ((e.target as HTMLInputElement).value) )
+        this.shapesRadio.addEventListener('click', (e)=> this.controller.shape = ((e.target as HTMLInputElement).value) )
         
         
     
 
     private getColorValue=()=>{
 
-        this.colorInput.addEventListener('click', (e)=> this.parameters['color']=((e.target as HTMLInputElement).value) );
+        this.colorInput.addEventListener('click', (e)=> this.controller.color =((e.target as HTMLInputElement).value) );
 
     }
 
     private getSizeValue=()=>{
 
-        this.size.addEventListener('click', (e)=> this.parameters['size']=Number(((e.target as HTMLInputElement).value) ));
+        this.size.addEventListener('click', (e)=> this.controller.size = Number(((e.target as HTMLInputElement).value) ));
 
     }
 
