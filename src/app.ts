@@ -6,4 +6,4 @@ const view: Document = window.document;
 
 const shapeModel: ShapeModel = new ShapeModel("square", 0, 0 , 100, "#C0C0C0");
 const canvasView: CanvasView = new CanvasView(window.document, shapeModel);
-const controller: CanvasController = new CanvasController()
+const controller: CanvasController = new CanvasController(canvasView)

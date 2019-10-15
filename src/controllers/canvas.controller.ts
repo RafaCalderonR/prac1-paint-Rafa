@@ -1,15 +1,15 @@
 import { CanvasView } from "../view/canvas.view";
 
 export class CanvasController {
-    constructor(){
+    constructor(private canvasView: CanvasView){
         
     }
 
 
     public PaintMe(nameShape){
         const shapes={
-            'quare': ()=>  CanvasView.Square(),
-            'circle': ()=> CanvasView.Circle();
+            'quare': ()=>  this.canvasView.drawSquare(),
+            'circle': ()=> this.canvasView.drawCircle()
         };
 
         return shapes[nameShape]
