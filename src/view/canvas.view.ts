@@ -1,5 +1,4 @@
 
-import IParameter from "../models/parameters";
 import { ShapeModel } from "../models/shape.model";
 
 export class CanvasView{
@@ -9,7 +8,6 @@ export class CanvasView{
     private context: CanvasRenderingContext2D;
     private shapesRadio: HTMLInputElement;
     private colorInput: HTMLInputElement;
-    private parameters: IParameter;
     private size: HTMLInputElement;
 
     constructor(private view: Document, private shape: ShapeModel){

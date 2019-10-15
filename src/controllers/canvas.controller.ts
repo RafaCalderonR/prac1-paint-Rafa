@@ -1,6 +1,6 @@
 import { CanvasView } from "../view/canvas.view";
 
-class CanvasController {
+export class CanvasController {
     constructor(){
         
     }
