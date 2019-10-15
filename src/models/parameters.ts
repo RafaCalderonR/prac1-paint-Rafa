@@ -5,3 +5,4 @@ export default interface IParameter{
     size: number,
     color:string
 }
+
