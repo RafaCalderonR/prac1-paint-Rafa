@@ -1,5 +1,6 @@
 
 import IParameter from "../models/parameters";
+import { ShapeController } from "../controllers/canvas.controller";
 
 export class CanvasView{
 
@@ -11,11 +12,10 @@ export class CanvasView{
     private parameters: IParameter;
     private size: HTMLInputElement;
 
-    constructor(private view: Document){
+    constructor(private view: Document, private controller: ShapeController){
 
         this.initCaching();
         this.init();
-        this.initParameters();
     }
 
     private initCaching(){
@@ -26,9 +26,9 @@ export class CanvasView{
         this.getContext(); 
         this.getSizeInput();
 
-       
     }
 
+    
     private init():void{
 
         this.draw();
@@ -38,20 +38,9 @@ export class CanvasView{
 
     }
 
-    private initParameters(){
+   
 
-        this.parameters = {
 
-            shape: "",
-            axisX:  0,
-            axisY:  0,
-            size:   100,
-            color:  "#cb3234",
-           
-    }
-
-     console.log(this.parameters)
-    }
 
     
 

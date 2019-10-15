@@ -1,5 +1,5 @@
 
-export class CanvasController{
+export class ShapeController{
 
     constructor(private _shape:string, private _axisX:number,private _axisY:number, private _size:number, private _color: string ){
 
