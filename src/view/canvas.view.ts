@@ -45,8 +45,8 @@ export class CanvasView{
             shape: "",
             axisX:  0,
             axisY:  0,
-            size: 100,
-            color: "#cb3234",
+            size:   100,
+            color:  "#cb3234",
            
     }
 
@@ -55,21 +55,21 @@ export class CanvasView{
 
     
 
-    private getCanvas=()=>{
+    private getCanvas=()=>
 
         this.canvas = this.view.getElementById('mycanvas') as HTMLCanvasElement;
-    }
+    
 
 
-    private getContext=()=>{
+    private getContext=()=>
         
         this.context = this.canvas.getContext('2d');
-    }
+    
 
-    private getColorInput=()=>{
+    private getColorInput=()=>
         
         this.colorInput = this.view.getElementById('input-color') as HTMLInputElement;
-    }
+    
 
     private getSizeInput=()=>{
         
@@ -82,12 +82,12 @@ export class CanvasView{
         this.shapesRadio = this.view.getElementById('radio-group') as HTMLInputElement;
     } 
 
-    private getShapeValue=()=>{
+    private getShapeValue=()=>
 
         this.shapesRadio.addEventListener('click', (e)=> this.parameters['shape'] = ((e.target as HTMLInputElement).value) )
         
         
-    }
+    
 
     private getColorValue=()=>{
 
