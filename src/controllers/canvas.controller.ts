@@ -44,8 +44,8 @@ export class ShapeController{
     }
 
 
-    public calculateCoordinates = (event, parent) =>{
-        
+    public calculateCoordinates = (event: MouseEvent, parent: HTMLCanvasElement) =>{
+       
         this._axisX = event.clientX - parent.offsetLeft,
         this._axisY = event.clientY - parent.offsetLeft
     }

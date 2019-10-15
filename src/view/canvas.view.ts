@@ -31,10 +31,11 @@ export class CanvasView{
 
     private init():void{
 
-        this.draw();
+       // this.draw();
         this.getColorValue();
         this.getSizeValue();
         this.getShapeValue();
+        this.getCordinates();
 
     }
 
@@ -90,13 +91,26 @@ export class CanvasView{
 
     }
 
-    private getcoordinates=() =>
 
-        this.canvas.addEventListener('click', (event)=>  this.getLocalClickCoords(event, this.canvas)
-             
+    private getCordinates= ()=> 
     
+        this.canvas.addEventListener('click',(event)=>this.controller.calculateCoordinates(event, this.canvas))
+        
 
- 
+   
+
+
+  /*  private getcoordinates() {
+
+        this.canvas.addEventListener('click', (event)=> {
+
+             this.getLocalClickCoords(event, this.canvas)
+             this.drawSquare();
+
+        });
+    }
+
+
     
 
     drawSquare = () => {
@@ -118,7 +132,7 @@ export class CanvasView{
         this.context.stroke();
     }
 
-    
+    */
 
 
 }
