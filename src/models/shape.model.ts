@@ -1,4 +1,4 @@
-export class ShapeController {
+export class ShapeModel {
     constructor(
         private _shape: string,
         private _axisX: number,

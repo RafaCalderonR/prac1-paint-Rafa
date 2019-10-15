@@ -1,6 +1,6 @@
 
 import IParameter from "../models/parameters";
-import { ShapeController } from "../controllers/shape.controller";
+import { ShapeModel } from "../models/shape.model";
 
 export class CanvasView{
 
@@ -12,7 +12,7 @@ export class CanvasView{
     private parameters: IParameter;
     private size: HTMLInputElement;
 
-    constructor(private view: Document, private controller: ShapeController){
+    constructor(private view: Document, private shape: ShapeModel){
 
         this.initCaching();
         this.init();
@@ -74,27 +74,27 @@ export class CanvasView{
 
     private getShapeValue=()=>
 
-        this.shapesRadio.addEventListener('click', (e)=> this.controller.shape = ((e.target as HTMLInputElement).value) )
+        this.shapesRadio.addEventListener('click', (e)=> this.shape.shape = ((e.target as HTMLInputElement).value) )
         
         
     
 
     private getColorValue=()=>{
 
-        this.colorInput.addEventListener('click', (e)=> this.controller.color =((e.target as HTMLInputElement).value) );
+        this.colorInput.addEventListener('click', (e)=> this.shape.color =((e.target as HTMLInputElement).value) );
 
     }
 
     private getSizeValue=()=>{
 
-        this.size.addEventListener('click', (e)=> this.controller.size = Number(((e.target as HTMLInputElement).value) ));
+        this.size.addEventListener('click', (e)=> this.shape.size = Number(((e.target as HTMLInputElement).value) ));
 
     }
 
 
     private getCordinates= (e: MouseEvent)=> 
     
-       this.controller.calculateCoordinates(e, this.canvas);
+       this.shape.calculateCoordinates(e, this.canvas);
        
         
     private paint=()=>{
@@ -108,9 +108,9 @@ export class CanvasView{
 
    private  drawSquare = () => {
             
-            console.log(this.controller)
-            this.context.fillStyle = this.controller.color
-            this.context.fillRect(this.controller.axisX, this.controller.axisY, this.controller.size, this.controller.size);
+            console.log(this.shape)
+            this.context.fillStyle = this.shape.color
+            this.context.fillRect(this.shape.axisX, this.shape.axisY, this.shape.size, this.shape.size);
     
         }
     
