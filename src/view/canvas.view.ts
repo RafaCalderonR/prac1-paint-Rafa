@@ -1,6 +1,6 @@
 
 import IParameter from "../models/parameters";
-import { ShapeController } from "../controllers/canvas.controller";
+import { ShapeController } from "../controllers/shape.controller";
 
 export class CanvasView{
 
@@ -100,19 +100,9 @@ export class CanvasView{
    
 
 
-  /*  private getcoordinates() {
-
-        this.canvas.addEventListener('click', (event)=> {
-
-             this.getLocalClickCoords(event, this.canvas)
-             this.drawSquare();
-
-        });
-    }
-
 
     
-
+/*
     drawSquare = () => {
 
         const { shape, axisX, axisY, size, color} = this.parameters

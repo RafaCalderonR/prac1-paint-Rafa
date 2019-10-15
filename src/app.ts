@@ -1,5 +1,5 @@
 import {CanvasView} from './view/canvas.view'
-import { ShapeController } from './controllers/canvas.controller';
+import { ShapeController } from './controllers/shape.controller';
 
 const view: Document = window.document;
 
