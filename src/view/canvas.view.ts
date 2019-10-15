@@ -35,7 +35,7 @@ export class CanvasView{
         this.getColorValue();
         this.getSizeValue();
         this.getShapeValue();
-        this.getCordinates();
+        this.paint();
 
     }
 
@@ -92,27 +92,32 @@ export class CanvasView{
     }
 
 
-    private getCordinates= ()=> 
+    private getCordinates= (e: MouseEvent)=> 
     
-        this.canvas.addEventListener('click',(event)=>this.controller.calculateCoordinates(event, this.canvas))
+       this.controller.calculateCoordinates(e, this.canvas);
+       
         
+    private paint=()=>{
+        this.canvas.addEventListener('click',(e)=>{
+        
+            this.getCordinates(e);
+            this.drawSquare()
 
-   
+        });
+    }
 
-
+   private  drawSquare = () => {
+            
+            console.log(this.controller)
+            this.context.fillStyle = this.controller.color
+            this.context.fillRect(this.controller.axisX, this.controller.axisY, this.controller.size, this.controller.size);
+    
+        }
+    
 
     
 /*
-    drawSquare = () => {
-
-        const { shape, axisX, axisY, size, color} = this.parameters
-        console.log(this.parameters)
-
-        this.context.fillStyle = color
-        this.context.fillRect(axisX, axisY, size, size);
-
-    }
-
+    
     drawCircle = (parameters) => {
 
         const {  axisX, axisY, size } = parameters

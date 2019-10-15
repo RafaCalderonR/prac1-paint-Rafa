@@ -46,9 +46,10 @@ export class ShapeController {
         event: MouseEvent,
         parent: HTMLCanvasElement
     ) => {
-            (this.axisX = event.clientX - parent.offsetLeft),
-            (this.axisY = event.clientY - parent.offsetLeft);
+            (this._axisX = event.clientX - parent.offsetLeft),
+            (this._axisY = event.clientY - parent.offsetLeft);
 
-            
     };
+
+    
 }
