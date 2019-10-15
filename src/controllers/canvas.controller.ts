@@ -6,11 +6,13 @@ class CanvasController {
     }
 
 
-    private PaintMe(nameShape){
+    public PaintMe(nameShape){
         const shapes={
             'quare': ()=>  CanvasView.Square(),
             'circle': ()=> CanvasView.Circle();
-        }
+        };
+
+        return shapes[nameShape]
     }
 
 
