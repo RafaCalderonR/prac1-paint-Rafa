@@ -1,7 +1,5 @@
-export interface Shape {
-    shape: string,
-    axisX: number,
-    axisY: number,
+export interface ShapeModel {
+    shapeName: string,
     size: number,
     color: string
 }

@@ -1,16 +1,28 @@
 import { CanvasView } from "../view/canvas.view";
-
+import { Shape } from "../models/shape";
 export class CanvasController {
-    constructor(private canvasView: CanvasView){
+    constructor(private canvasView: CanvasView, private shape: Shape){
+        
+        this.prueba();
         
     }
 
 
-    public PaintMe(nameShape){
+
+
+    public prueba(){
+       this.canvasView.click();
+       //this.canvasView.drawSquare();
+        console.log(this.shape)
+    }
+
+    
+
+    public PaintMe(nameShape) {
         const shapes={
-            'quare': ()=>  this.canvasView.drawSquare(),
-            'circle': ()=> this.canvasView.drawCircle(),
-            'triangle': ()=> this.canvasView.drawTriangle()
+           'Quare': ()=>  this.canvasView.drawSquare(),
+           'Circle': ()=> this.canvasView.drawCircle(),
+           'Triangle': ()=> this.canvasView.drawTriangle()
         };
 
         return shapes[nameShape]

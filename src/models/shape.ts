@@ -1,22 +1,15 @@
-import { Shape } from '../models/shape.model';
+import { ShapeModel } from './shape.model';
 
-export class ShapeController implements Shape{
+
+export class Shape implements ShapeModel{
     constructor(
-        private _shape: string,
-        private _axisX: number,
-        private _axisY: number,
+        private _shapeName: string,
         private _size: number,
-        private _color: string
+        private _color: string,
     ) { }
 
-    get shape(): string {
-        return this._shape;
-    }
-    get axisX(): number {
-        return this._axisX;
-    }
-    get axisY(): number {
-        return this._axisY;
+    get shapeName(): string {
+        return this._shapeName;
     }
     get size(): number {
         return this._size;
@@ -25,17 +18,16 @@ export class ShapeController implements Shape{
         return this._color;
     }
 
-    set shape(value: string) {
-        this._shape = value;
+
+    set shapeName(value: string) {
+        this._shapeName = value;
     }
 
     set axisX(value: number) {
         this._color = this.color;
     }
 
-    set axisY(value: number) {
-        this._axisY = this.axisY;
-    }
+    
     set size(value: number) {
         this._size = this.size;
     }
@@ -44,7 +36,7 @@ export class ShapeController implements Shape{
         this._color = value;
     }
 
-    public calculateCoordinates = (
+  /*  public calculateCoordinates = (
         event: MouseEvent,
         parent: HTMLCanvasElement
     ) => {
@@ -52,6 +44,24 @@ export class ShapeController implements Shape{
             (this._axisY = event.clientY - parent.offsetLeft);
 
     };
+*/
+
+  
+/*
+    public getParameters=()=>{
+
+          const allParameteters : Shape = {
+
+            shape : this.shape,
+            size  : this.size,
+            color : this.color
+        }
+
+        return allParameteters;
+    }
+*/
+
+    
 
     
 }
