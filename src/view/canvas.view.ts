@@ -100,15 +100,15 @@ export class CanvasView {
     this.context.stroke();
   };
 
- /* public drawTriangle = () =>{
+ public drawTriangle = () =>{
 
     this.context.strokeStyle = this.shape.color;
     this.context.beginPath();
     this.context.moveTo(this.shape.axisX, this.shape.axisY);
     this.context.lineTo(this.shape.axisX, this.shape.axisY + this.shape.size);
-    this.context.lineTo(this.shape.axisX, + this.shape.size, this.shape.axisY + this.shape.size);
+    this.context.lineTo(this.shape.axisX + this.shape.size, this.shape.axisY + this.shape.size);
     this.context.closePath();
     this.context.stroke();
 
-  }*/
+  }
 }

@@ -9,7 +9,8 @@ export class CanvasController {
     public PaintMe(nameShape){
         const shapes={
             'quare': ()=>  this.canvasView.drawSquare(),
-            'circle': ()=> this.canvasView.drawCircle()
+            'circle': ()=> this.canvasView.drawCircle(),
+            'triangle': ()=> this.canvasView.drawTriangle()
         };
 
         return shapes[nameShape]
