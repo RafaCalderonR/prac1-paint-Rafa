@@ -6,6 +6,8 @@ export class CanvasView {
   private shapesRadio: HTMLInputElement;
   private colorInput: HTMLInputElement;
   private sizeInput: HTMLInputElement;
+  private downloadButton: HTMLInputElement
+  private cleanButton: HTMLInputElement;
 
   constructor(private view: Document, private shape: Shape, ) {
     this.init();
@@ -20,7 +22,11 @@ export class CanvasView {
     this.getShapeValue();
     this.getColorValue();
     this.getSizeValue();
+    this.getDowloadButton();
+    this.getCleanButton();
     this.click();
+    this.downloadEvent();
+    this.cleanCanvas();
   }
 
   private getCanvas = () =>
@@ -34,6 +40,12 @@ export class CanvasView {
       "input-color"
     ) as HTMLInputElement);
 
+
+  private getDowloadButton = () =>
+  (this.downloadButton = this.view.getElementById(
+    "download-button"
+  ) as HTMLInputElement);
+
   private getSizeInput = () => {
     this.sizeInput = this.view.getElementById("input-size") as HTMLInputElement;
   };
@@ -44,30 +56,55 @@ export class CanvasView {
     ) as HTMLInputElement;
   };
 
-  public getShapeValue = () =>
+  private getCleanButton = () => {
+    this.cleanButton = this.view.getElementById(
+      "clean-button"
+    ) as HTMLInputElement;
+  }
+
+  private getShapeValue = () =>
     this.shapesRadio.addEventListener(
       "click",
       e => (this.shape.shapeName = (e.target as HTMLInputElement).value)
     );
 
-  public getColorValue = () => {
+  private getColorValue = () => {
     this.colorInput.addEventListener(
       "click",
       e => (this.shape.color = (e.target as HTMLInputElement).value))
   };
 
-  public getSizeValue = () => {
+  private getSizeValue = () => {
     this.sizeInput.addEventListener(
       "click",
       e => (this.shape.size = Number((e.target as HTMLInputElement).value))
     );
   };
 
+  
 
-  public getCordinates = (event: MouseEvent) =>
+
+  private cleanCanvas(){
+    this.cleanButton.addEventListener('click', ()=>
+     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    )
+  }
+
+
+  private downloadEvent(){
+    this.downloadButton.addEventListener('click', () => this.downloadCanvas())
+  }
+
+  private downloadCanvas(){
+    const image=  this.canvas.toDataURL('img/png').replace("image/png", "image/octet-stream");;
+    window.location.href=image
+  }
+
+
+  private getCordinates = (event: MouseEvent) =>
     this.shape.calculateCoordinates(event, this.canvas);
 
-  public click = () => {
+  private click = () => {
     this.canvas.addEventListener("click", event => {
       this.getCordinates(event)
 
@@ -93,10 +130,11 @@ export class CanvasView {
     this.context.beginPath();
     this.context.arc(
       this.shape.axisX,
-      this.shape.size,
+     
       this.shape.axisY,
+      this.shape.size/2,
       0,
-      2 * Math.PI
+      2 * Math.PI, true
     );
     this.context.stroke();
   };
@@ -113,7 +151,7 @@ export class CanvasView {
 
 
   private PaintMe() {
-       console.log(this.shape)
+      
     const shapes={
        'Square': ()=>  this.drawSquare(),
        'Circle':  ()=> this.drawCircle (),

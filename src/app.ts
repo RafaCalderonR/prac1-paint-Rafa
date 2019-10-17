@@ -1,7 +1,7 @@
 import {CanvasView} from './view/canvas.view'
 import { Shape } from './models/shape';
 import { PaintController } from './controllers/paint.controller';
-
+import './assets/styles.css'
 
 
 

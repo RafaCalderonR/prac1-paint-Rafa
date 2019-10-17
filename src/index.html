@@ -9,42 +9,13 @@
     
     <title>Document</title>
 </head>
-<style>
-    .grid-container {
-    display: grid;
-    grid-template-columns: 0.4fr 1.7fr 1.7fr 0.4fr;
-    grid-template-rows: 0.3fr 1.7fr 1.7fr 0.3fr;
-    grid-template-areas: "header header header header" "menu1 Canvas Canvas menu2" "menu1 Canvas Canvas menu2" "footer footer footer footer";
-  }
-  
-  .Canvas { grid-area: Canvas; }
-  
-  .header { grid-area: header; }
-  
-  .footer { grid-area: footer; }
-  
-  .menu1 { grid-area: menu1; 
-            padding: 3px;
-  }
-  
-  .menu2 { grid-area: menu2; }
-  
-  .mycanvas{
-    border-style: solid;
-    border-color: black;
-    
-  }
-  
-  
-  
-  
-</style>
+
 
 <body>  
 
   
     <div class="grid-container">
-        <div class="Canvas"><canvas width='1000' height='700' class="mycanvas" id="mycanvas" ></canvas></div>
+        <div class="Canvas"><canvas width='1000' height='500' class="mycanvas" id="mycanvas" ></canvas></div>
         <div class="header"></div>
         <div class="footer"></div>
         <div class="menu1" id="menu1">
@@ -53,24 +24,28 @@
             <button type="radio" class="btn btn-outline-info btn-lg btn-block" value="Circle" checked="">Circle</button>
             <button type="radio" class="btn btn-outline-info btn-lg btn-block" value="Triangle">Triangle</button>
             <button type="radio" class="btn btn-outline-info btn-lg btn-block" value="Square">Square</button>
-            <button type="radio" class="btn btn-outline-info btn-lg btn-block" value="">Hearth</button>
-             </div>
+            
+            </div>
             <h3>Colour</h3>
             <input id="input-color" type="color" class="btn btn-outline-info btn-lg btn-block" value="#ff0080">
             <h3>Size</h3>
             <div class="slidecontainer">
             
               <input id="input-size" type="range" min="1" max="250" value="50">
-           
+              <button id="download-button" type="button" class="btn  btn-lg btn-outline-danger  btn-block">Download</button>
+
+        <button id="clean-button" type="button" class="btn  btn-lg btn-outline-danger  btn-block">Clean</button>
         </div>
-               
+            
               
-        <div class="menu2"></div>  
-        </div>
         
+        
+      </div>
+      
       </div>
 
 </div>
-    <div id="log-container"></div>
+
+   
 </body>
 </html>

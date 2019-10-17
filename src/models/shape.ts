@@ -1,83 +1,59 @@
-import { ShapeModel } from './shape.model';
+import { ShapeModel } from "./shape.model";
 
+export class Shape implements ShapeModel {
+  constructor(
+    private _axisX: number,
+    private _axisY: number,
+    private _shapeName: string,
+    private _size: number,
+    private _color: string
+  ) {}
 
-export class Shape implements ShapeModel{
-    constructor(
-        private _axisX: number, 
-        private _axisY:number,
-        private _shapeName: string,
-        private _size: number,
-        private _color: string,
-        
-    ) { }
+  get axisX(): number {
+    return this._axisX;
+  }
 
+  get axisY(): number {
+    return this._axisY;
+  }
 
-    get axisX(): number {
-        return this._axisX;
-    };
+  get shapeName(): string {
+    return this._shapeName;
+  }
 
-    get axisY(): number {
-        return this._axisY;
-    };
+  get size(): number {
+    return this._size;
+  }
 
+  get color(): string {
+    return this._color;
+  }
 
-    get shapeName(): string {
-        return this._shapeName;
-    };
+  set shapeName(value: string) {
+    this._shapeName = value;
+  }
 
-    get size(): number {
-        return this._size;
-    };
+  set size(value: number) {
+    this._size = value;
+  }
 
-    get color(): string {
-        return this._color;
-    };
+  set color(value: string) {
+    this._color = value;
+  }
 
-    set shapeName(value: string) {
+  set axisX(value: number) {
+    this._axisX = value;
+  }
 
-        this._shapeName = value;
+  set axisY(value: number) {
+    this._axisY = value;
+  }
 
-    };
-
-    set size(value: number) {
-
-        this._size = value;
-
-    };
-
-    set color(value: string) {
-
-        this._color = value;
-
-    };
-
-    
-
-    set axisX(value: number) {
-
-        this._axisX = value;
-
-    };
-
-   
-
-    set axisY(value: number) {
-        this._axisY = value;
-    };
-
-    public calculateCoordinates = (event: MouseEvent, parent: HTMLCanvasElement) => {
-        
-        this.axisX = event.clientX - parent.offsetLeft,
-        this.axisY = event.clientY - parent.offsetLeft
-        
-
-
-    }
-
-    
-
-
-    
-
-    
+  public calculateCoordinates = (
+    event: MouseEvent,
+    parent: HTMLCanvasElement
+  ) => {
+    (this.axisX = event.clientX - parent.offsetLeft),
+      (this.axisY = event.clientY - parent.offsetLeft);
+  };
 }
