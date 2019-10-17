@@ -1,6 +1,6 @@
-import { ShapeModel } from "./shape.model";
+import { IShapeModel } from "./shape.interface";
 
-export class Shape implements ShapeModel {
+export class Shape implements IShapeModel {
   constructor(
     private _axisX: number,
     private _axisY: number,
@@ -53,7 +53,7 @@ export class Shape implements ShapeModel {
     event: MouseEvent,
     parent: HTMLCanvasElement
   ) => {
-    (this.axisX = event.clientX - parent.offsetLeft),
+      (this.axisX = event.clientX - parent.offsetLeft),
       (this.axisY = event.clientY - parent.offsetLeft);
   };
 }

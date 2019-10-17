@@ -7,5 +7,5 @@ import './assets/styles.css'
 
 const view: Document = window.document;
 const shape: Shape = new Shape(200, 200, "Square", 100, "#C0C0C0");
-const canvasView: CanvasView = new CanvasView(window.document, shape);
-const controller= new PaintController(shape, canvasView)
+const canvasView: CanvasView = new CanvasView(view, shape);
+const controller= new PaintController(canvasView)

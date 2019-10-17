@@ -1,22 +1,25 @@
 import { CanvasView } from "../view/canvas.view";
-import { Shape } from "../models/shape";
+import { ICommand } from "../models/command.interface";
 
 export class PaintController {
-  commandShapes: any;
-  constructor(private shape: Shape, private canvasView: CanvasView) {
+  private commandShapes: ICommand;
 
+  constructor(private canvasView: CanvasView) {
+    this.getClick();
+    this.CommandShapes();
+  }
+
+  private getClick = () => this.canvasView.canvasClick(this.commandShapes);
+
+  private CommandShapes = () => {
     this.commandShapes = {
       Square: this.canvasView.drawSquare,
       Circle: this.canvasView.drawCircle,
       Triangle: this.canvasView.drawTriangle,
+
       execute: function(action) {
         this[action]();
       }
     };
-
-    this.canvasView.click(this.commandShapes);
-  }
-
-  
-
+  };
 }
