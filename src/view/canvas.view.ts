@@ -10,23 +10,27 @@ export class CanvasView {
   private cleanButton: HTMLInputElement;
 
   constructor(private view: Document, private shape: Shape, ) {
+    this.cachingHtmlElement();
     this.init();
   }
 
-  private init() {
+  private cachingHtmlElement(){
     this.getCanvas();
     this.getContext();
     this.getColorInput();
     this.getSizeInput();
     this.getShapeInput();
+    this.getDowloadButton();
+    this.getCleanButton();
+  }
+
+  private init() {
     this.getShapeValue();
     this.getColorValue();
     this.getSizeValue();
-    this.getDowloadButton();
-    this.getCleanButton();
-    this.click();
     this.downloadEvent();
     this.cleanCanvas();
+    //this.click();
   }
 
   private getCanvas = () =>
@@ -81,8 +85,6 @@ export class CanvasView {
     );
   };
 
-  
-
 
   private cleanCanvas(){
     this.cleanButton.addEventListener('click', ()=>
@@ -104,18 +106,18 @@ export class CanvasView {
   private getCordinates = (event: MouseEvent) =>
     this.shape.calculateCoordinates(event, this.canvas);
 
-  private click = () => {
+  public click = (command) => {
+
     this.canvas.addEventListener("click", event => {
+
       this.getCordinates(event)
-
-
-      this.PaintMe()
+      command.execute(this.shape.shapeName);
       
     })
   };
 
 
-  private drawSquare = () => {
+  public drawSquare = () => {
 
     this.context.fillStyle = this.shape.color;
     this.context.fillRect(
@@ -126,7 +128,9 @@ export class CanvasView {
     );
   };
 
-  private drawCircle = () => {
+  public drawCircle = () => {
+    this.context.strokeStyle = this.shape.color;
+
     this.context.beginPath();
     this.context.arc(
       this.shape.axisX,
@@ -139,7 +143,7 @@ export class CanvasView {
     this.context.stroke();
   };
 
-  private drawTriangle = () => {
+  public drawTriangle = () => {
     this.context.strokeStyle = this.shape.color;
     this.context.beginPath();
     this.context.moveTo(this.shape.axisX, this.shape.axisY);
@@ -150,17 +154,6 @@ export class CanvasView {
   };
 
 
-  private PaintMe() {
-      
-    const shapes={
-       'Square': ()=>  this.drawSquare(),
-       'Circle':  ()=> this.drawCircle (),
-       'Triangle': ()=> this.drawTriangle(),
 
-    };
-    
-
-    return (shapes[this.shape.shapeName])();
-}
 
 }
