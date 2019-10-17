@@ -36,30 +36,18 @@ export class Shape implements ShapeModel{
         this._color = value;
     }
 
-  /*  public calculateCoordinates = (
-        event: MouseEvent,
-        parent: HTMLCanvasElement
-    ) => {
-            (this._axisX = event.clientX - parent.offsetLeft),
-            (this._axisY = event.clientY - parent.offsetLeft);
-
-    };
-*/
-
-  
-/*
     public getParameters=()=>{
 
-          const allParameteters : Shape = {
+          const allParameteters  = {
 
-            shape : this.shape,
+            shape : this.shapeName,
             size  : this.size,
             color : this.color
         }
 
         return allParameteters;
     }
-*/
+
 
     
 
