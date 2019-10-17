@@ -53,7 +53,7 @@ export class Shape implements IShapeModel {
     event: MouseEvent,
     parent: HTMLCanvasElement
   ) => {
-      (this.axisX = event.clientX - parent.offsetLeft),
+    (this.axisX = event.clientX - parent.offsetLeft),
       (this.axisY = event.clientY - parent.offsetLeft);
   };
 }

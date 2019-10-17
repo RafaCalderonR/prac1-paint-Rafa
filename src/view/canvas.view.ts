@@ -2,6 +2,7 @@ import { IShapeModel } from "../models/shape.interface";
 import { Shape } from "../models/shape";
 import { ICommand } from "../models/command.interface";
 export class CanvasView {
+
   private canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D;
   private shapesRadio: HTMLInputElement;
@@ -36,7 +37,7 @@ export class CanvasView {
   private getCanvas = () =>
     (this.canvas = this.view.getElementById("mycanvas") as HTMLCanvasElement);
 
-  private getContext = () => (this.context = this.canvas.getContext("2d"));
+  private getContext = ():CanvasRenderingContext2D => (this.context = this.canvas.getContext("2d"));
 
   private getColorInput = () =>
     (this.colorInput = this.view.getElementById(
@@ -49,62 +50,57 @@ export class CanvasView {
     ) as HTMLInputElement);
 
   private getSizeInput = () =>
-    this.sizeInput = this.view.getElementById("input-size") as HTMLInputElement;
-  ;
+    (this.sizeInput = this.view.getElementById(
+      "input-size"
+    ) as HTMLInputElement);
 
   private getShapeInput = () =>
-    this.shapesRadio = this.view.getElementById(
+    (this.shapesRadio = this.view.getElementById(
       "radio-group"
-    ) as HTMLInputElement;
-  ;
+    ) as HTMLInputElement);
 
   private getCleanButton = () =>
-    this.cleanButton = this.view.getElementById(
+    (this.cleanButton = this.view.getElementById(
       "clean-button"
-    ) as HTMLInputElement;
-  ;
+    ) as HTMLInputElement);
 
-  private getShapeValue = () =>
+  private getShapeValue = ():void =>
     this.shapesRadio.addEventListener(
       "click",
       e => (this.shape.shapeName = (e.target as HTMLInputElement).value)
     );
 
-  private getColorValue = () =>
+  private getColorValue = ():void =>
     this.colorInput.addEventListener(
       "click",
       e => (this.shape.color = (e.target as HTMLInputElement).value)
     );
-  ;
 
-  private getSizeValue = () =>
+  private getSizeValue = ():void =>
     this.sizeInput.addEventListener(
       "click",
       e => (this.shape.size = Number((e.target as HTMLInputElement).value))
     );
-  ;
 
-  private cleanCanvas = () =>
+  private cleanCanvas = ():void =>
     this.cleanButton.addEventListener("click", () =>
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
     );
 
-
-  private downloadEvent = () =>
+  private downloadEvent = ():void =>
     this.downloadButton.addEventListener("click", () => this.downloadCanvas());
 
-
-  private downloadCanvas = () => {
+  private downloadCanvas = ():void => {
     const image = this.canvas
       .toDataURL("img/png")
       .replace("image/png", "image/octet-stream");
     window.location.href = image;
-  }
+  };
 
   private getCordinates = (event: MouseEvent) =>
     this.shape.calculateCoordinates(event, this.canvas);
 
-  public canvasClick = (command : ICommand) => {
+  public canvasClick = (command: ICommand) => {
     this.canvas.addEventListener("click", event => {
       this.getCordinates(event);
       command.execute(this.shape.shapeName);

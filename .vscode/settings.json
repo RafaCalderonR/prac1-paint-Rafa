@@ -12,5 +12,6 @@
         "statusBar.background": "#41d9ba",
         "statusBarItem.hoverBackground": "#27c0a1",
         "statusBar.foreground": "#15202b"
-    }
+    },
+    "prettier.trailingComma": "es5"
 }
