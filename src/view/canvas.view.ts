@@ -5,7 +5,7 @@ export class CanvasView {
   private context: CanvasRenderingContext2D;
   private shapesRadio: HTMLInputElement;
   private colorInput: HTMLInputElement;
-  private size: HTMLInputElement;
+  private sizeInput: HTMLInputElement;
 
   constructor(private view: Document, private shape: Shape, ) {
     this.init();
@@ -20,6 +20,7 @@ export class CanvasView {
     this.getShapeValue();
     this.getColorValue();
     this.getSizeValue();
+    this.click();
   }
 
   private getCanvas = () =>
@@ -34,7 +35,7 @@ export class CanvasView {
     ) as HTMLInputElement);
 
   private getSizeInput = () => {
-    this.size = this.view.getElementById("input-size") as HTMLInputElement;
+    this.sizeInput = this.view.getElementById("input-size") as HTMLInputElement;
   };
 
   private getShapeInput = () => {
@@ -56,7 +57,7 @@ export class CanvasView {
   };
 
   public getSizeValue = () => {
-    this.size.addEventListener(
+    this.sizeInput.addEventListener(
       "click",
       e => (this.shape.size = Number((e.target as HTMLInputElement).value))
     );
@@ -66,15 +67,18 @@ export class CanvasView {
   public getCordinates = (event: MouseEvent) =>
     this.shape.calculateCoordinates(event, this.canvas);
 
-  public click = (startPaint) => {
+  public click = () => {
     this.canvas.addEventListener("click", event => {
       this.getCordinates(event)
-      startPaint()
+
+
+      this.PaintMe()
+      
     })
   };
 
 
-  public drawSquare = () => {
+  private drawSquare = () => {
 
     this.context.fillStyle = this.shape.color;
     this.context.fillRect(
@@ -85,7 +89,7 @@ export class CanvasView {
     );
   };
 
-  public drawCircle = () => {
+  private drawCircle = () => {
     this.context.beginPath();
     this.context.arc(
       this.shape.axisX,
@@ -97,7 +101,7 @@ export class CanvasView {
     this.context.stroke();
   };
 
-  public drawTriangle = () => {
+  private drawTriangle = () => {
     this.context.strokeStyle = this.shape.color;
     this.context.beginPath();
     this.context.moveTo(this.shape.axisX, this.shape.axisY);
@@ -106,4 +110,19 @@ export class CanvasView {
     this.context.closePath();
     this.context.stroke();
   };
+
+
+  private PaintMe() {
+       console.log(this.shape)
+    const shapes={
+       'Square': ()=>  this.drawSquare(),
+       'Circle':  ()=> this.drawCircle (),
+       'Triangle': ()=> this.drawTriangle(),
+
+    };
+    
+
+    return (shapes[this.shape.shapeName])();
+}
+
 }

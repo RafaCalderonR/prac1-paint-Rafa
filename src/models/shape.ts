@@ -34,23 +34,29 @@ export class Shape implements ShapeModel{
     };
 
     set shapeName(value: string) {
+
         this._shapeName = value;
 
-        
     };
 
     set size(value: number) {
-        this._size = this.size;
+
+        this._size = value;
+
     };
 
     set color(value: string) {
+
         this._color = value;
+
     };
 
     
 
     set axisX(value: number) {
+
         this._axisX = value;
+
     };
 
    
